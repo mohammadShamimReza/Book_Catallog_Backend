@@ -8,7 +8,9 @@ import { BookValidation } from './Book.validation';
 const router = express.Router();
 
 router.get('/', BookController.getAllFromDB);
-router.get('/:id', BookController.getAllFromDB);
+router.get('/:id', BookController.getById);
+router.get('/:categoryId/category', BookController.getByCategoryId);
+
 router.post(
   '/create-book',
   auth(ENUM_USER_ROLE.ADMIN),

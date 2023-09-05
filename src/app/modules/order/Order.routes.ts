@@ -10,9 +10,9 @@ const router = express.Router();
 router.get(
   '/',
   auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.CUSTOMER),
-  OrderController.getAllFromDB,
+  OrderController.getOrder,
 );
-router.get('/', OrderController.getAllFromDB);
+
 router.get(
   '/:id',
   auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.CUSTOMER),
@@ -21,7 +21,6 @@ router.get(
 router.post(
   '/create-order',
   auth(ENUM_USER_ROLE.CUSTOMER),
-
   validateRequest(OrderValidation.create),
   OrderController.createOrder,
 );
