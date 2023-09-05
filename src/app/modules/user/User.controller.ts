@@ -10,7 +10,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Students fetched successfully',
+    message: 'User fetched successfully',
     data: result,
   });
 });
@@ -21,7 +21,7 @@ const getById = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Student fetched successfully',
+    message: 'User fetched successfully',
     data: result,
   });
 });

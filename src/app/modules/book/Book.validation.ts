@@ -8,7 +8,7 @@ const create = z.object({
     author: z.string({
       required_error: 'author is required',
     }),
-    price: z.string({
+    price: z.number({
       required_error: 'price is required',
     }),
     genre: z.string({
