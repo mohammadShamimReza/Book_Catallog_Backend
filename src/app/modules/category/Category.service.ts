@@ -1,4 +1,6 @@
 import { Category } from '@prisma/client';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import prisma from '../../../shared/prisma';
 
 const insertIntoDB = async (data: Category): Promise<Category> => {
@@ -18,6 +20,9 @@ const getById = async (id: string): Promise<Category | null> => {
       id,
     },
   });
+  if (!result) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'category not found');
+  }
   return result;
 };
 
