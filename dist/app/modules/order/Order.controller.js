@@ -14,11 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
+const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const Order_service_1 = require("./Order.service");
 const createOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield Order_service_1.OrderService.createOrder(req.body);
+    let id;
+    if (req.user !== null && typeof req.user === 'object' && 'id' in req.user) {
+        id = req.user.id;
+    }
+    else {
+        throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "doesn't have an 'id' property");
+    }
+    const data = Object.assign(Object.assign({}, req.body), { userId: id }); // Now you can safely use the 'id' variable
+    const result = yield Order_service_1.OrderService.createOrder(data);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,

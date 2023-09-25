@@ -35,7 +35,7 @@ const signIn = (LoginData) => __awaiter(void 0, void 0, void 0, function* () {
     if (!isUserExist) {
         throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'user not found');
     }
-    const { role } = isUserExist;
+    const { role, id } = isUserExist;
     const isUserExistWithPassword = yield prisma_1.default.user.findFirst({
         where: {
             email,
@@ -45,7 +45,7 @@ const signIn = (LoginData) => __awaiter(void 0, void 0, void 0, function* () {
     if (!isUserExistWithPassword) {
         throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'password not matched');
     }
-    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ email, password, role }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
+    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ email, password, role, id }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
     const refreshToken = jwtHelpers_1.jwtHelpers.createToken({ email, password }, config_1.default.jwt.refresh_secret, config_1.default.jwt.refresh_expires_in);
     return {
         accessToken,

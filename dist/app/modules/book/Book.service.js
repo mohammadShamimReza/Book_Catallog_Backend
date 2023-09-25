@@ -82,7 +82,6 @@ const getAllFromDb = (filters, options) => __awaiter(void 0, void 0, void 0, fun
             }),
         });
     }
-    console.log(andConditions[0], 'this is and conditions', minPrice, maxPrice);
     const whereConditions = andConditions.length > 0 ? { AND: andConditions } : {};
     const result = yield prisma_1.default.book.findMany({
         include: {

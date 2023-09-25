@@ -1,11 +1,23 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { OrderService } from './Order.service';
 
 const createOrder = catchAsync(async (req: Request, res: Response) => {
-  const result = await OrderService.createOrder(req.body);
+  let id: string | undefined;
+
+  if (req.user !== null && typeof req.user === 'object' && 'id' in req.user) {
+    id = req.user.id;
+  } else {
+    throw new ApiError(httpStatus.BAD_REQUEST, "doesn't have an 'id' property");
+  }
+
+  const data = { ...req.body, userId: id }; // Now you can safely use the 'id' variable
+
+  const result = await OrderService.createOrder(data);
+
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

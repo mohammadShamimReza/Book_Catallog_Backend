@@ -28,6 +28,7 @@ const signUp = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0,
     });
 }));
 const signIn = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('hi');
     const LoginData = req.body;
     const result = yield Auth_service_1.AuthService.signIn(LoginData);
     const { accessToken, refreshToken } = result;

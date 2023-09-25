@@ -40,6 +40,14 @@ const updateCategory = async (
 };
 
 const deleteCategory = async (id: string): Promise<Category> => {
+  const isExist = await prisma.category.findUnique({
+    where: {
+      id,
+    },
+  });
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'category not found');
+  }
   const result = await prisma.category.delete({
     where: {
       id,

@@ -1,15 +1,12 @@
-import { $Enums, Order, Prisma } from '@prisma/client';
+import { Order, Prisma } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import prisma from '../../../shared/prisma';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createOrder = async (data: {
-  id: string;
   userId: string;
   orderedBooks: Prisma.JsonArray[];
-  status: $Enums.OrderStatusEnum;
-  createdAt: Date;
 }): Promise<Order> => {
   const result = await prisma.order.create({
     data,

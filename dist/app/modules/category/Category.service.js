@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CategoryService = void 0;
+const http_status_1 = __importDefault(require("http-status"));
+const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const prisma_1 = __importDefault(require("../../../shared/prisma"));
 const insertIntoDB = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.default.category.create({
@@ -30,6 +32,9 @@ const getById = (id) => __awaiter(void 0, void 0, void 0, function* () {
             id,
         },
     });
+    if (!result) {
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'category not found');
+    }
     return result;
 });
 const updateCategory = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
@@ -42,6 +47,14 @@ const updateCategory = (id, payload) => __awaiter(void 0, void 0, void 0, functi
     return result;
 });
 const deleteCategory = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const isExist = yield prisma_1.default.category.findUnique({
+        where: {
+            id,
+        },
+    });
+    if (!isExist) {
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'category not found');
+    }
     const result = yield prisma_1.default.category.delete({
         where: {
             id,

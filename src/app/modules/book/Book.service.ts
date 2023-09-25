@@ -75,8 +75,6 @@ const getAllFromDb = async (
     });
   }
 
-  console.log(andConditions[0], 'this is and conditions', minPrice, maxPrice);
-
   const whereConditions: Prisma.BookScalarWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
 

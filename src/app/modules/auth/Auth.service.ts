@@ -26,7 +26,7 @@ const signIn = async (LoginData: { email: string; password: string }) => {
   if (!isUserExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'user not found');
   }
-  const { role } = isUserExist;
+  const { role, id } = isUserExist;
 
   const isUserExistWithPassword = await prisma.user.findFirst({
     where: {
@@ -40,7 +40,7 @@ const signIn = async (LoginData: { email: string; password: string }) => {
   }
 
   const accessToken = jwtHelpers.createToken(
-    { email, password, role },
+    { email, password, role, id },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string,
   );

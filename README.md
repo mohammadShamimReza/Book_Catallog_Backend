@@ -30,7 +30,7 @@ Short description of your project.
 
 - `POST` https://bookcatallogbackend-production.up.railway.app/api/v1/books/create-book
 - `GET` https://bookcatallogbackend-production.up.railway.app/api/v1/books
-- `GET` https://bookcatallogbackend-production.up.railway.app/api/v1/books/:4cfd864d-9fbe-4b67-a778-218260355105/category
+- `GET` https://bookcatallogbackend-production.up.railway.app/api/v1/books/4cfd864d-9fbe-4b67-a778-218260355105/category
 - `GET` https://bookcatallogbackend-production.up.railway.app/api/v1/books/d4384656-9a2b-4af8-a462-cdedcf26972a
 - `PATCH` https://bookcatallogbackend-production.up.railway.app/api/v1/books/d4384656-9a2b-4af8-a462-cdedcf26972a
 - `DELETE` https://bookcatallogbackend-production.up.railway.app/api/v1/books/d4384656-9a2b-4af8-a462-cdedcf26972a
@@ -39,7 +39,7 @@ Short description of your project.
 
 - `POST` https://bookcatallogbackend-production.up.railway.app/api/v1/orders/create-order
 - `GET` https://bookcatallogbackend-production.up.railway.app/api/v1/orders 
-- `GET` https://bookcatallogbackend-production.up.railway.app/api/v1/orders/:7c1ffb64-8646-476b-ba2b-8945ff031209
+- `GET` https://bookcatallogbackend-production.up.railway.app/api/v1/orders/7c1ffb64-8646-476b-ba2b-8945ff031209
 
 ## Installation
 

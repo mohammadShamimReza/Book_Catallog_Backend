@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint:fix": "eslint . --fix",
     "pretter:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "prettier:fix": "prettier --write .",
-    "lint:pretter": "npm run lint:check && npm run pretter:check"
+    "lint:pretter": "npm run lint:check && npm run pretter:check",
+    "build": "tsc"
   },
   "lint-staged": {
     "src/**/*.ts": "npm run lint:pretter"
